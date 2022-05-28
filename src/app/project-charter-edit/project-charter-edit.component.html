@@ -1,0 +1,108 @@
+<div style="height: 80vh;">
+    <form #projectCharterHandler="ngForm" (ngSubmit)="onSubmit(projectCharterHandler.value)"
+    class="justify-content-center" style="border:1px solid black;padding-bottom: 10px;">
+
+    <input hidden name="Id" [(ngModel)]="projectCharter.Id" />
+
+    <div class="form-group style-form justify-content-center align-items-center"
+    style="position: relative;">
+        <label for="pTitle"  class="form-label p-3" style="width:25%">Project Title</label>
+        <input required type="text" id="pTitle" #pTitle="ngModel"   style="width:60%"   name="projectTitle" class="form-control"
+        [class.is-invalid]="pTitle.touched && pTitle.invalid"
+        [(ngModel)]="projectCharter.projectTitle" />
+        <small class="text-danger"
+        style="position:absolute; bottom: -5px; left:277px" 
+        *ngIf="pTitle.invalid && pTitle.touched">Project Title is required</small>
+    </div>
+
+    <div class="form-group style-form justify-content-center align-items-center"
+    style="position: relative;">
+        <label for="pObj"  class="form-label p-3" style="width:25%">Project Objectives</label>
+        <input required type="text"  #pObjectives="ngModel"
+        [class.is-invalid]="pObjectives.touched && pObjectives.invalid"
+        style="width:60%"  id="pObj" name="Objectives" class="form-control"
+        [(ngModel)]="projectCharter.Objectives" />
+        <small class="text-danger"
+        style="position:absolute; bottom: -5px; left:277px" 
+        *ngIf="pObjectives.invalid && pObjectives.touched">
+            Project Objectives is required
+        </small>
+</div>
+
+    <div class="form-group style-form justify-content-center align-items-center"
+    style="position: relative;">
+        <label for="pMan"  class="form-label p-3"  style="width: 25%;">Project Manager</label>
+        <input required #pMan="ngModel" type="text" id="pMan" name="projectManager"
+        [class.is-invalid]="pMan.touched && pMan.invalid" style="width:60%"  
+        class="form-control"
+        [(ngModel)]="projectCharter.projectManager" />
+        <small class="text-danger"
+        style="position:absolute; bottom: -5px; left:277px" 
+        *ngIf="pMan.invalid && pMan.touched">
+            Project Manager field is required</small>
+
+    </div>
+
+    <div class="form-group style-form justify-content-center align-items-center"
+    style="position: relative;">
+        <label for="sDate" class="form-label p-3"  style="width: 25%;">Start Date</label>
+        <input required type="date" name="startDate" class="form-control"
+        style="width:60%"  #sDate="ngModel"
+        [(ngModel)]="projectCharter.startDate" />
+        <small class="text-danger"></small>
+    </div>
+
+
+    <div class="form-group style-form justify-content-center align-items-center"
+    style="position: relative;">
+        <label for="eDate" class="form-label p-3"  style="width: 25%;">End Date</label>
+        <input required type="date" name="endDate" class="form-control"
+        [(ngModel)]="projectCharter.endDate"
+        style="width:60%" 
+        />
+        <small class="text-danger"
+        
+        ></small>
+    </div>
+
+    <div class="form-group style-form justify-content-center align-items-center"
+    style="position: relative;">
+        <label for="bud" class="form-label p-3"  style="width: 25%;">Budget Information</label>
+        <input required type="number" id="bud" name="budgetInformation" class="form-control"
+        [(ngModel)]="projectCharter.budgetInformation"
+        style="width:60%" 
+        #budget="ngModel"
+        [(ngModel)]="projectCharter.budgetInformation"
+        [class.is-invalid]="projectCharter.budgetInformation < 1 && budget.touched"/>
+        <small class="text-danger"
+        style="position:absolute; bottom: -5px; left:277px" 
+        *ngIf="projectCharter.budgetInformation < 1 && budget.touched">Budget Information is required
+            to be more than 1
+        </small>
+    </div>
+
+
+    <div class="form-group style-form justify-content-center align-items-center"
+    style="position: relative;">
+        <label for="pScope" class="form-label p-3"  style="width: 25%;">Project Scope Statement</label>
+        <input required type="text" id="pScope"
+        #scope="ngModel" 
+        name="projectScopeStatement" class="form-control"
+        style="width:60%" 
+        [(ngModel)]="projectCharter.projectScopeStatement" />
+        <small class="text-danger"
+        style="position:absolute; bottom: -5px; left:277px" 
+        *ngIf="scope.invalid && scope.touched">
+            Project Scope Statement is required
+        </small>
+    </div>
+
+    <div class="col-12 row justify-content-evenly mt-3">
+        <button type="submit" class="col-2 btn btn-success"
+        [disabled]="budget.value < 1 || projectCharterHandler.invalid"
+        style="padding-right:25px; padding-left:25px;">Edit</button>
+        <button type="reset" class="col-2 btn btn-danger" style="padding-right:25px; padding-left:25px; ">Reset</button>
+    </div>
+
+</form>
+</div>

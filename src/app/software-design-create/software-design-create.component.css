@@ -1,0 +1,4 @@
+.style-form {
+    display: flex;
+    flex-flow: row nowrap;
+}

@@ -1,0 +1,52 @@
+<div style="height: 80vh;">
+    <div  class="justify-content-center" style="border:1px solid black;padding-bottom: 10px;">
+
+        <div style="border-bottom:1px solid black;display: flex" class="justify-content-between align-items-center">
+            <h5 class="">Project Charter</h5>
+            <button (click)="disposeThisComponent()">Close</button>
+        </div>
+        
+        <div class="style-form justify-content-center align-items-center">
+            <p for="pTitle"  class="p-3" style="width:27%"><b>Project Title:</b></p>
+            <p style="width:60%">{{projectCharter.projectTitle}} </p>
+        </div>
+
+
+        <div class="style-form justify-content-center align-items-center">
+            <p for="pObj"  class="p-3"  style="width: 27%;"><b>Project Objectives:</b></p>
+            <p style="width:60%">{{projectCharter.Objectives}}</p>
+        </div>
+
+        <div class="style-form justify-content-center align-items-center">
+            <p class="p-3"  style="width: 27%;"><b>Project Manager:</b></p>
+            <span style="width:60%">{{projectCharter.projectManager}}</span>
+        </div>
+
+        <div class="style-form justify-content-center align-items-center">
+            <p class="p-3"  style="width: 27%;"><b>Start Date:</b></p>
+            <span style="width:60%">{{projectCharter.startDate}}</span>
+        </div>
+
+        <div class="style-form justify-content-center align-items-center">
+            <p class="p-3"  style="width: 27%;"><b>End Date:</b></p>
+            <p style="width:60%">{{projectCharter.endDate}}</p>            
+        </div>
+
+        <div class="style-form justify-content-center align-items-center">
+            <p class="p-3"  style="width: 27%;"><b>Budget Information:</b></p>
+            <p style="width:60%">{{projectCharter.budgetInformation}}</p>
+        </div>
+
+        <div class="style-form justify-content-center align-items-center">
+            <p class="p-3 "  style="width: 27%;"><b>Project Scope Statement:</b></p>
+            <p style="width:60%">{{projectCharter.projectScopeStatement}}</p>
+        </div>
+        
+        <div class="col-12 row justify-content-evenly mt-3">
+            <button type="submit" class="col-2 btn btn-primary"
+            style="padding-right:25px; padding-left:25px;" (click)="editThisPhase(projectCharter.Id)">Edit</button>
+            <button type="reset" class="col-2 btn btn-danger" (click)="DeleteThisPhase(projectCharter.Id)" style="padding-right:25px; padding-left:25px; ">Delete</button>
+        </div>
+        
+    </div>
+</div>

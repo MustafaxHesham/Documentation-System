@@ -1,0 +1,100 @@
+<div style="height: 80vh;">
+    <form #REQSHandler="ngForm" (ngSubmit)="onSubmit(REQSHandler.value)"
+    class="justify-content-center" style="border:1px solid black;padding-bottom: 10px;">
+
+        <div style="border-bottom:1px solid black;display: flex" class="justify-content-between align-items-center">
+            <h5>Software Requirements Specification (SRS)</h5>
+            <button (click)="disposeThisComponent()">Close</button>
+        </div>
+
+        
+        <div class="form-group style-form justify-content-center align-items-center"
+        style="position: relative;">
+            <label for="Introduction" class="form-label p-3" style="width:40%">Introduction</label>
+            <input required type="text" #intro="ngModel" id="Introduction"
+            [class.is-invalid]="intro.touched && intro.invalid"
+            style="width:50%;" name="Introduction" class="form-control"
+            [(ngModel)]="requirementAnalysis.Introduction" />
+            <small class="text-danger" style="position:absolute; bottom: -5px; left:385px" *ngIf="intro.touched && intro.invalid">
+                Introduction is Required
+            </small>
+        </div>
+        
+        <div class="form-group style-form justify-content-center align-items-center"
+        style="position: relative;">
+            <label for="softwarePurpose" class="form-label p-3"style="width:40%">Purpose of software being developed</label>
+            <input required type="text" #purpose="ngModel" id="softwarePurpose"   style="width:50%" name="softwarePurpose" class="form-control"
+            [(ngModel)]="requirementAnalysis.softwarePurpose"
+            [class.is-invalid]="purpose.touched && purpose.invalid"/>
+            <small class="text-danger" style="position:absolute; bottom: -5px; left:385px"  
+            *ngIf="purpose.touched && purpose.invalid"> Purpose is required.</small>
+        </div>
+
+        <div class="form-group style-form justify-content-center align-items-center"
+        style="position: relative;">
+            <label for="IntendedAudience" class="form-label p-3" style="width:40%">Intended Audience</label>
+            <input required type="text" id="IntendedAudience" #aud="ngModel"
+            [class.is-invalid]="aud.touched && aud.invalid"
+            style="width:50%" name="IntendedAudience" class="form-control"
+            [(ngModel)]="requirementAnalysis.IntendedAudience" />
+            <small class="text-danger"  style="position:absolute; bottom: -5px; left:385px"
+            *ngIf="aud.touched && aud.invalid">
+                Intended Audience is Required.
+            </small>
+        </div>
+
+        <div class="form-group style-form justify-content-center align-items-center"
+        style="position: relative;">
+            <label for="overallDesc" class="form-label p-3" style="width:40%">Overall Description</label>
+            <input required="" required type="text" #desc="ngModel" id="overallDesc"    style="width:50%" name="overallDesc" class="form-control"
+            [(ngModel)]="requirementAnalysis.overallDesc" 
+            [class.is-invalid]="desc.touched && desc.invalid"
+            />
+            <small class="text-danger"  style="position:absolute; bottom: -5px; left:385px"
+                *ngIf="desc.touched && desc.invalid">
+                Description is required.
+            </small>
+        </div>
+
+
+        <div class="form-group style-form justify-content-center align-items-center"
+        style="position: relative;">
+            <label for="systemFeature" class="form-label p-3" style="width:40%">
+                System Features and Requirements:
+                    <ul style="list-style:none">
+                        <br>
+                        <li>1) Functional Requirements</li>
+                        <li>2) Non Functional Requirements</li>
+                        <li>3) External Interface Requirements</li>
+                    </ul>
+            </label>
+            <textarea required  type="text" #reqs="ngModel"  id="systemFeature" style="width:50%; height: 142px;" name="systemFeatures" class="form-control"
+                [(ngModel)]="requirementAnalysis.systemFeatures"
+                [class.is-invalid]="reqs.touched && reqs.invalid">
+            </textarea>
+            <small class="text-danger"  style="position:absolute; bottom: -5px; left:385px" 
+                *ngIf="reqs.touched && reqs.invalid">
+                System Features is required.
+            </small>
+        </div>
+
+        <div class="form-group style-form justify-content-center align-items-center"
+        style="position: relative;">
+            <label for="useCaseImgURL"class="form-label p-3" style="width:40%"
+            title="use case is required"
+            >Use Case<span class="text-danger">*</span></label>
+            <input required type="file" #imgs name="useCaseImgURL"  style="width:50%" id="useCaseImgURL"
+            (change)="getImagePath(imgs.files)"
+            class="form-control" accept=".jpeg,.jpg,.png,.jfif"
+            />
+        </div>
+
+        <div class="col-12 row justify-content-evenly mt-3">
+            <button type="submit" class="col-2 btn btn-primary"
+            [disabled]="REQSHandler.invalid || imgs.value == '' "
+            style="padding-right:25px; padding-left:25px;">Save</button>
+            <button type="reset" class="col-2 btn btn-danger" style="padding-right:25px; padding-left:25px; ">Reset</button>
+        </div>
+
+    </form>
+</div>

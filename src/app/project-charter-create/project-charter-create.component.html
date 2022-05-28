@@ -1,0 +1,124 @@
+<div style="height: 80vh;">
+    <form #projectCharterHandler="ngForm" (ngSubmit)="onSubmit(projectCharterHandler.value, EndDate.value, StartDate.value)"
+    class="justify-content-center" style="border:1px solid black;padding-bottom: 10px;">
+
+        <div style="border-bottom:1px solid black;display: flex" class="justify-content-between align-items-center">
+            <h5 class="">Project Charter</h5>
+            <button (click)="disposeThisComponent()">Close</button>
+        </div>
+        
+        <div class="form-group style-form justify-content-center align-items-center"
+        style="position: relative;">
+            <label for="pTitle"  class="form-label p-3" style="width:25%">Project Title</label>
+            <input required #pTitle="ngModel" type="text"  style="width:60%"  id="pTitle" name="projectTitle"
+            class="form-control"
+            [(ngModel)]="projectCharter.projectTitle" [class.is-invalid]="pTitle.touched && pTitle.invalid"/>
+            <small class="text-danger"
+            style="position:absolute; bottom: -5px; left:277px"
+            *ngIf="pTitle.invalid && pTitle.touched">Project Title is required</small>
+        </div>
+
+
+        <div class="form-group style-form justify-content-center align-items-center"
+        style="position: relative;">
+            <label for="pObj"  class="form-label p-3"  style="width: 25%;">Project Objectives</label>
+            <input required type="text" style="width:60%"  #pObjectives="ngModel" 
+            [class.is-invalid]="pObjectives.touched && pObjectives.invalid"
+            id="pObj" name="Objectives" class="form-control"
+            [(ngModel)]="projectCharter.Objectives"/>
+            
+            <small class="text-danger"
+            style="position:absolute; bottom: -5px; left:277px"
+            *ngIf="pObjectives.invalid && pObjectives.touched">
+                Project Objectives is required
+            </small>
+        </div>
+
+        <div class="form-group style-form justify-content-center align-items-center"
+        style="position: relative;">
+            <label for="pMan"  class="form-label p-3"  style="width: 25%;">Project Manager</label>
+            <input required type="text" #pMan="ngModel"
+            style="width:60%" 
+            [class.is-invalid]="pMan.touched && pMan.invalid"
+            id="pMan" name="projectManager" class="form-control"
+            [(ngModel)]="projectCharter.projectManager"
+            />
+            
+            <small class="text-danger"
+                style="position:absolute; bottom: -5px; left:277px" 
+                *ngIf="pMan.invalid && pMan.touched">
+                Project Manager field is required
+            </small>
+        </div>
+
+        <div class="form-group style-form justify-content-center align-items-center"
+                style="position: relative;">
+                <label for="eDate"  class="form-label p-3"  style="width: 25%;">Start Date</label>
+                <input required type="date"  #StartDate (blur)="validStartDateValue(StartDate.value)" (change)="validateStartDate(StartDate.value, EndDate.value)" name="endDate" class="form-control"
+                style="width:60%" 
+                [class.is-invalid]="invalidStartDate"/>
+
+            <small class="text-danger"
+            style="position:absolute; bottom: -5px; left:277px" 
+            *ngIf="invalidStartDate">You should pick project start date</small>
+        </div>
+
+        <div class="form-group style-form justify-content-center align-items-center">
+            <p class="text-danger form-label" style="width: 35%" *ngIf="invalidFullDate && StartDate.value.length > 0 && EndDate.value.length > 0 ">
+                You must provide logical date
+            </p>
+        </div>
+
+        <div class="form-group style-form justify-content-center align-items-center"
+                style="position: relative;">
+                <label for="eDate"  class="form-label p-3"  style="width: 25%;">End Date</label>
+                <input required type="date"  #EndDate (blur)="validEndDateValue(EndDate.value)" (change)="validateEndDate(EndDate.value, StartDate.value)" name="endDate" class="form-control"
+                style="width:60%" 
+                [class.is-invalid]="invalidEndDate"/>
+
+            <small class="text-danger"
+            style="position:absolute; bottom: -5px; left:277px" 
+            *ngIf="invalidEndDate">You should pick project end date</small>
+        </div>
+
+    <div class="form-group style-form justify-content-center align-items-center"
+        style="position: relative;">
+            <label for="bud" class="form-label p-3"  style="width: 25%;">Budget Information</label>
+            <input required type="number" #budget="ngModel" id="bud" name="budgetInformation"
+                class="form-control"
+                style="width:60%" 
+            [(ngModel)]="projectCharter.budgetInformation"
+            [class.is-invalid]="projectCharter.budgetInformation < 1 && budget.touched"
+            
+            />
+            <small class="text-danger"
+            style="position:absolute; bottom: -5px; left:277px"
+            *ngIf="projectCharter.budgetInformation < 1 && budget.touched">Budget Information is required
+                to be more than 1
+            </small>
+        </div>
+
+        <div class="form-group style-form justify-content-center align-items-center"
+        style="position: relative;">
+            <label for="pScope"  class="form-label p-3"  style="width: 25%;">Project Scope Statement</label>
+            <input required type="text" #scope="ngModel" id="pScope" name="projectScopeStatement" class="form-control"
+            [(ngModel)]="projectCharter.projectScopeStatement"
+            style="width:60%"  [class.is-invalid]="scope.invalid && scope.touched"
+            />
+            <small class="text-danger" 
+            style="position:absolute; bottom: -5px; left:277px"
+            *ngIf="scope.invalid && scope.touched">
+                Project Scope Statement is required
+            </small>
+        </div>
+
+        
+
+        <div class="col-12 row justify-content-evenly mt-3">
+            <button type="submit" class="col-2 btn btn-primary"
+            [disabled]="budget.value < 1 || projectCharterHandler.invalid || invalidEndDate || invalidStartDate || invalidFullDate"
+            style="padding-right:25px; padding-left:25px;">Save</button>
+            <button type="reset" class="col-2 btn btn-danger" style="padding-right:25px; padding-left:25px; ">Reset</button>
+        </div>
+    </form>
+</div>

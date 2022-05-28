@@ -1,0 +1,31 @@
+<div style="height: 80vh;">
+    <div style="width:100%; height: 100%; overflow: auto;">
+                <div *ngFor="let i of Phases">                    
+                    <div *ngIf="checkInstance(i) === 'RA'">
+                        <div class="card" (click)="viewDetailsRA(getRequirementAnalysisType(i))">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h2>Requirement ID:#{{getRequirementAnalysisType(i).Id}}</h2>
+                                    <h2>SW Purpose:    {{getRequirementAnalysisType(i).softwarePurpose}}</h2>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+                    
+                    <div *ngIf="checkInstance(i) === 'SD'">
+                        <div class="card">
+                                    <div class="card-title" *ngFor="let imgName of getSoftwareDesignType(i).imageWithName">
+                                        <div class="card-body">
+                                            <div (click)="viewDetailsSD(imgName.imgName, imgName.imgURL)">
+                                            <h2>{{"SW ID#:" + i.Id}}</h2>
+                                            <h2>{{"SW ImageName:" +imgName.imgName}}</h2>
+                                            <hr/>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>                    
+                    </div>
+                    
+                </div> 
+     </div>
+</div>
